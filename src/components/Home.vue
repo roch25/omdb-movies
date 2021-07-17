@@ -1,72 +1,50 @@
 <template>
-  <div class="text-gray-700 bg-primary font-body">
+  <div class="text-gray-900 bg-primary font-body px-16">
     <div>
-      <nav>
+      <nav class="grid grid-rows-2">
         <div>
-          <h1 class="font-bold p-4">
+          <h1 class="font-bold py-5">
             <a href="/" class="text-2xl sm:text-3xl">OMBd Movies</a>
           </h1>
         </div>
-        <ul>
-          <li>
-            <a href="#">
-              <span>Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>About</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>Contact</span>
-            </a>
-          </li>
-        </ul>
+        <div
+          class="flex flex-col justify-evenly sm:flex-row sm:justify-between"
+        >
+          <ul class="grid grid-cols-3 gap-1">
+            <li>
+              <a href="#">
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span>About</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span>Contact</span>
+              </a>
+            </li>
+          </ul>
+          <div>
+            <a href="#" class="text-secondary">Log in</a>
+            <a href="#" class="text-secondary ml-2">Sign up</a>
+          </div>
+        </div>
       </nav>
     </div>
-    <main class="px-16 py-5">
-      <div class="flex justify-center md:justify-end">
-        <a href="#" class="text-secondary">Log in</a>
-        <a href="#" class="text-secondary ml-2">Sign up</a>
-      </div>
-
+    <main class="py-2">
       <header>
-        <h2 class="text-4xl font-semibold">Movies</h2>
-        <h3 class="text-2xl">For all</h3>
+        <h2 class="text-2xl font-semibold">Movies</h2>
       </header>
 
       <div>
         <h4 class="font-bold mt-12 pb-2 border-b">English</h4>
-        <div class="mt-5">
-          <div>
-            <ul>
-              <li v-for="movie in names.en">
-                <span>{{ movie.Title }}</span>
-                <span>{{ movie.Actors }}</span>
-                <img :src="movie.Poster" :alt="movie.Title" />
-              </li>
-            </ul>
-          </div>
-        </div>
+        <movie-list :movies="movies.en" />
 
         <h4 class="font-bold mt-12 pb-2 border-b">Hindi</h4>
-        <div class="mt-5">
-          <div>
-            <ul>
-              <li v-for="movie in names.hi">
-                <span>{{ movie.Title }}</span>
-                <span>{{ movie.Actors }}</span>
-                <img :src="movie.Poster" :alt="movie.Title" />
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="flex justify-center">
-          <div>Load more</div>
-        </div>
+        <movie-list :movies="movies.hi" />
       </div>
     </main>
   </div>
@@ -74,16 +52,18 @@
 
 <script>
 import names from "../assets/Names";
+import MovieList from "./MovieList.vue";
 
 export default {
+  components: {
+    MovieList,
+  },
   data() {
     return {
-      names: {
+      movies: {
         en: [],
         hi: [],
       },
-      moviesEN: [],
-      moviesHI: [],
     };
   },
   methods: {
@@ -92,13 +72,19 @@ export default {
         const KEY = import.meta.env.VITE_API_KEY;
         const URL = `http://www.omdbapi.com/?type=movie&apikey=${KEY}&t=`;
 
-        for (const i in names) {
-          this.names[i] = await Promise.all([
-            ...names[i].map((name) => fetch(`${URL}${name}`)),
-          ]).then((res) =>
-            Promise.all(res.map(async (movie) => await movie.json()))
-          );
-        }
+        const movies = await Promise.all([
+          ...names.map((name) => fetch(`${URL}${name}`)),
+        ]).then((res) =>
+          Promise.all(res.map(async (movie) => await movie.json()))
+        );
+
+        console.log(movies);
+        this.movies.en = movies.filter((movie) =>
+          movie.Language.startsWith("English")
+        );
+        this.movies.hi = movies.filter((movie) =>
+          movie.Language.startsWith("Hindi")
+        );
       } catch (error) {
         console.log(error);
       }
@@ -109,5 +95,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

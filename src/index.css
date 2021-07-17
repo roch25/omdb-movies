@@ -1,5 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card {
+    @apply m-2 bg-white rounded overflow-hidden shadow-md relative;
+}
+
+.badge {
+    @apply bg-primary text-secondary text-xs rounded p-2 absolute top-0 mt-1 rounded-lg bg-opacity-90;
+}

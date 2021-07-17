@@ -8,7 +8,7 @@ module.exports = {
         secondary: "#6a3a94",
       },
       fontFamily: {
-        body: ["Quicksand"]
+        body: ["Nunito"]
       }
     },
   },
