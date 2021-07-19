@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card hover:shadow-lg">
     <div>
       <slot name="poster"></slot>
     </div>

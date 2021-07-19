@@ -1,11 +1,11 @@
 <template>
-  <div class="mt-5 grid gap-5 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-5">
+  <div class="mt-5 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4 sm:px-1">
     <movie v-for="movie in movies" :key="movie.Title">
       <template v-slot:title>
         {{ movie.Title }}
       </template>
       <template v-slot:poster>
-        <img :src="movie.Poster" :alt="movie.Title" class="w-full h-84 md:h-72"/>
+        <img :src="movie.Poster" :alt="movie.Title" class="w-full h-84 md:h-64"/>
       </template>
       <template v-slot:actors>
         {{ movie.Actors }}

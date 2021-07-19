@@ -1,6 +1,6 @@
 module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  darkMode: false, 
+  darkMode: false,
   theme: {
     extend: {
       colors: {
@@ -8,12 +8,14 @@ module.exports = {
         secondary: "#6a3a94",
       },
       fontFamily: {
-        body: ["Nunito"]
-      }
+        body: ["Nunito"],
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      fontWeight: ["hover"],
+    },
   },
   plugins: [],
 };
