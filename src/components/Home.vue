@@ -4,7 +4,7 @@
       <nav class="grid grid-rows-2">
         <div class="flex justify-between py-5">
           <h1 class="font-semibold">
-            <a href="/" class="text-2xl sm:text-3xl">OMBd Movies</a>
+            <a href="/" class="text-2xl sm:text-3xl">OMDb Movies</a>
           </h1>
           <span class="cursor-pointer sm:hidden" @click="toggle">
             <svg
@@ -129,7 +129,7 @@ export default {
     async getMovies() {
       try {
         const KEY = import.meta.env.VITE_API_KEY;
-        const URL = `http://www.omdbapi.com/?type=movie&apikey=${KEY}&t=`;
+        const URL = `https://www.omdbapi.com/?type=movie&apikey=${KEY}&t=`;
 
         const movies = await Promise.all([
           ...names.map((name) => fetch(`${URL}${name}`)),
