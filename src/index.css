@@ -5,11 +5,11 @@
 @tailwind utilities;
 
 .card {
-    @apply m-2 bg-white rounded overflow-hidden shadow relative;
+    @apply m-2 bg-white rounded overflow-hidden shadow relative cursor-pointer;
 }
 
 .badge {
-    @apply bg-primary text-secondary text-xs rounded p-2 absolute top-0 mt-1 rounded-lg bg-opacity-90;
+    @apply text-xs rounded p-2 absolute top-0 mt-1 rounded-lg bg-opacity-90;
 }
 
 .btn {

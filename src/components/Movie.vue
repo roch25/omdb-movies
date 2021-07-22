@@ -10,11 +10,9 @@
       <p class="mt-4">
         <slot name="actors"></slot>
       </p>
-      <div class="badge">
-        <span>
-          <slot name="rated"></slot>
-        </span>
-      </div>
+      <span>
+        <slot name="rated"></slot>
+      </span>
     </div>
   </div>
 </template>
