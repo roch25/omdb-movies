@@ -5,16 +5,9 @@
     </div>
     <main class="py-2">
       <header>
-        <h2 class="text-2xl font-semibold">Movies</h2>
+        <h2 class="text-2xl font-semibold">About</h2>
       </header>
-
-      <div>
-        <h4 class="font-bold mt-12 pb-2 border-b">English</h4>
-        <movie-list :movies="movies.en" />
-
-        <h4 class="font-bold mt-12 pb-2 border-b">Hindi</h4>
-        <movie-list :movies="movies.hi" />
-      </div>
+      <div>First Tailwind Project</div>
     </main>
   </div>
 </template>
