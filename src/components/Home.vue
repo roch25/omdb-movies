@@ -139,7 +139,7 @@ export default {
 
         for (let [abbr, lang] of Object.entries({ en: "English", hi: "Hindi" }))
           this.movies[abbr] = movies.filter((movie) =>
-            movie.Language.startsWith(lang)
+            movie.Language?.startsWith(lang)
           );
       } catch (error) {
         console.log(error);
